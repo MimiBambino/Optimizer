@@ -358,6 +358,14 @@ var makeRandomPizza = function() {
 }
 
 // returns a DOM element for each pizza
+//////////////////////////// Cynthia's Magic Pizza Generator ///////////////////////////
+
+//var pizzaElementGenerator = function(){}
+
+
+/////////////////////////  End of Cynthia's Magic Pizza Generator //////////////////////
+
+
 var pizzaElementGenerator = function(i) {
   var pizzaContainer,             // contains pizza title, image and list of ingredients
       pizzaImageContainer,        // contains the pizza image
@@ -401,6 +409,7 @@ var pizzaElementGenerator = function(i) {
 var resizePizzas = function(size) { 
   window.performance.mark("mark_start_resize");   // User Timing API function
 
+//////////  Save document query to variable  ////////////
   function changeSliderLabel(size){
       var selector = document.querySelector("#pizzaSize");
       switch(size) {
@@ -445,7 +454,8 @@ var resizePizzas = function(size) {
 // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     var selector = document.querySelectorAll(".randomPizzaContainer");
-    for (var i = 0; i < selector.length; i++) {
+
+    for (var i = 0; i < 100; i++){
       var dx = determineDx(selector[i], size);
       var newwidth = (selector[i].offsetWidth + dx) + 'px';
       selector[i].style.width = newwidth;
@@ -523,10 +533,10 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
+    elem.src = "images/pizzaSm.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
