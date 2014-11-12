@@ -533,10 +533,12 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 30; i++) {
+  //// reduce calls to 28 because that is how many pizzas are on the screen ////
+  for (var i = 0; i < 28; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizzaSm.png";
+    ////  replace image with a smaller one  ////
+    elem.src = "images/pizzaXs.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
