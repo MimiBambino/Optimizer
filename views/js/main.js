@@ -490,6 +490,25 @@ var frame = 0;
 
 // Moves the sliding background pizzas based on scroll position
 
+///////////////////// My Revision with Timeout  ///////////////////
+var items = document.querySelectorAll('.mover');
+
+(function updatePositions (i) {
+   setTimeout(function () {
+      frame++;
+
+var items = document.querySelectorAll('.mover');
+var len = items.length;
+for (var i = 0; i < len; i++) {
+  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+}          //  your code here
+      if (--i) updatePositions(i);      //  decrement i and call myLoop again if i > 0
+   }, 50)
+})(items);
+
+//////////////////////////////////////////////////////////////////
+/*
 function updatePositions() {
   frame++;
 
@@ -500,9 +519,9 @@ function updatePositions() {
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 }
-
+*/
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+//window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
@@ -520,5 +539,5 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  //updatePositions();
 });
