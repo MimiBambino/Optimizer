@@ -414,14 +414,96 @@ for (var i = 2; i < 100; i++) {
 
 //////////////////////////// Cynthia's Magic Pizza Resizer ///////////////////////////
 
-//var resizePizzas = function(size){}
+var resizePizzas = function(size) {
 
+//////////  Save document query to variable  ////////////
+  function changeSliderLabel(size){
+      var selector = document.querySelector("#pizzaSize");
+      switch(size) {
+        case "1":
+          selector.innerHTML = "Small";
+          return;
+        case "2":
+          selector.innerHTML = "Medium";
+          return;
+        default:
+          selector.innerHTML = "Large";
+          return;
+        }
+      }
+
+  changeSliderLabel(size);
+
+  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+  function determineDx (elem, size) {
+    var oldwidth = elem.offsetWidth;
+    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
+    var oldsize = oldwidth / windowwidth;
+
+    if (size === '1'){
+      var newsize = 0.25;
+      var dx = (newsize - oldsize) * windowwidth;
+      var image = 'images/pizzaSm.png';
+    } else if (size === '2'){
+      var newsize = 0.3333;
+      var dx = (newsize - oldsize) * windowwidth;
+      var image = 'images/pizzaMd.png';
+    } else {
+      var newsize = 0.5;
+      var dx = (newsize - oldsize) * windowwidth;
+      var image = 'images/pizza.png';
+    }
+
+    return dx;
+  }
+
+// Iterates through pizza elements on the page and changes their widths
+  function changePizzaSizes(size) {
+    var selector = document.querySelectorAll(".randomPizzaContainer");
+
+    for (var i = 0; i < 100; i++){
+      var dx = determineDx(selector[i], size);
+      var newwidth = (selector[i].offsetWidth + dx) + 'px';
+      selector[i].style.width = newwidth;
+    }
+  }
+
+  changePizzaSizes(size);
+}
+
+// Iterator for number of times the pizzas in the background have scrolled.
+// Used by updatePositions() to decide when to log the average time per frame
+var frame = 0;
+
+// The following code for sliding background pizzas was pulled from Ilya's demo found at:
+
+// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
+
+///////////////////// My Revision with Timeout  ///////////////////
+
+//http://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
+var items = document.querySelectorAll('.mover');
+
+(function updatePositions (i) {
+   setTimeout(function () {
+      frame++;
+
+var items = document.querySelectorAll('.mover');
+// Pull document.querySelector out of for loop and replace with 28
+// There are 28 elements to be updated
+for (var i = 0; i < 28; i++) {
+  var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+}          //  your code here
+      if (--i) updatePositions(i);      //  decrement i and call myLoop again if i > 0
+   }, 50)  // wait 50ms between each loop
+})(items);
 
 /////////////////////////  End of Cynthia's Magic Pizza Resizer //////////////////////
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 // pizza.html sends a value of 1, 2, or 3 as the size parameter
-var resizePizzas = function(size) {
+/*var resizePizzas = function(size) {
 
 //////////  Save document query to variable  ////////////
   function changeSliderLabel(size){
@@ -479,18 +561,19 @@ var resizePizzas = function(size) {
   changePizzaSizes(size);
 }
 
+*/
+
 // Iterator for number of times the pizzas in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
 var frame = 0;
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 
-/////////// Figure out why he is able to get under 60fps!!! ////////////
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// Moves the sliding background pizzas based on scroll position
-
 ///////////////////// My Revision with Timeout  ///////////////////
+
+//http://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
 var items = document.querySelectorAll('.mover');
 
 (function updatePositions (i) {
@@ -498,28 +581,18 @@ var items = document.querySelectorAll('.mover');
       frame++;
 
 var items = document.querySelectorAll('.mover');
-var len = items.length;
-for (var i = 0; i < len; i++) {
+// Pull document.querySelector out of for loop and replace with 28
+// There are 28 elements to be updated
+for (var i = 0; i < 28; i++) {
   var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
   items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 }          //  your code here
       if (--i) updatePositions(i);      //  decrement i and call myLoop again if i > 0
-   }, 50)
+   }, 50)  // wait 50ms between each loop
 })(items);
 
 //////////////////////////////////////////////////////////////////
-/*
-function updatePositions() {
-  frame++;
 
-  var items = document.querySelectorAll('.mover');
-  var len = items.length;
-  for (var i = 0; i < len; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-  }
-}
-*/
 // runs updatePositions on scroll
 //window.addEventListener('scroll', updatePositions);
 
