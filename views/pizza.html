@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>  
+<head>
   <link rel="stylesheet" href="css/bootstrap-grid-min.css">
   <style>
       * {
@@ -40,6 +40,7 @@
     .randomPizzaContainer {
       float: left;
       display: flex;
+      height: 325px;
     }
 
     .randomPizzaContainer:after {
@@ -50,6 +51,30 @@
 
      .container {
       background-color: rgba(240, 60, 60, 0.8);
+    }
+
+    .medium {
+      width: 389.961px;
+    }
+
+    .medium img {
+      content: url("images/pizzaMd.png");
+    }
+
+    .small {
+      width: 292.5px;
+    }
+
+    .small img {
+      content: url("images/pizzaSm.png");
+    }
+
+    .large {
+      width: 585px;
+    }
+
+    .large img {
+      content: url("images/pizza.png");
     }
 
     button {
@@ -89,7 +114,7 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-12">
-            <h2>We Have Hundreds of Pizza Recipes!</h2>            
+            <h2>We Have Hundreds of Pizza Recipes!</h2>
             <p>At Cam's Pizzeria, we know you want options. Pepperoni? Boring. Cheese? No way! Sausage? C'mon, let's get creative.</p>
 
             <p>We have every pizza ingredient imaginable in our kitchen because we know you take choice seriously. Take a look through our menu of hundreds of pizza options and we know that you'll find something you love.</p>
@@ -148,9 +173,9 @@
           </div>
         </div>
         <div id="randomPizzas" class="row">
-          <div id="pizza0" class="randomPizzaContainer" style="width:33.33%;">
+          <div id="pizza0" class="randomPizzaContainer medium">
             <div class="col-md-6">
-              <img src="images/pizza.png" class="img-responsive">
+              <img class="img-responsive">
             </div>
             <div class="col-md-6">
               <h4>The Udacity Special</h4>
@@ -165,9 +190,9 @@
               </ul>
             </div>
           </div>
-          <div id="pizza1" class="randomPizzaContainer" style="width:33.33%;">
+          <div id="pizza1" class="randomPizzaContainer medium">
             <div class="col-md-6">
-              <img src="images/pizza.png" class="img-responsive">
+              <img class="img-responsive">
             </div>
             <div class="col-md-6">
               <h4>The Cameron Special</h4>
