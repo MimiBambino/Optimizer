@@ -11,6 +11,9 @@ the javascript files to load asynchronously. Specifically, in the pizza website,
 eliminated a lot of unnecessary DOM calls and a lot of the CSS that was originally 
 in the Bootstrap file.
 
+Lastly, I minified the JavaScript file.  The original is left in tact in the main.js 
+file for easier review.
+
 http://stackoverflow.com/questions/5898656/test-if-an-element-contains-a-class
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_selectors
